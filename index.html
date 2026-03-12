@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Graphic Designer | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+            color: #1a1a1a;
+            scroll-behavior: smooth;
+        }
+
+        /* Image hover effect */
+        .work-card {
+            background: white;
+            border: 1px solid #eeeeee;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .work-card img {
+            transition: transform 0.6s scale;
+        }
+
+        .work-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .work-card:hover .overlay {
+            opacity: 1;
+        }
+
+        #previewModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-btn {
+            background: #f3f4f6;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            color: #6b7280;
+        }
+
+        /* Skeleton placeholder for images before they load */
+        .img-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="font-bold tracking-tighter text-lg uppercase italic">Junior Designer</span>
+            <div class="flex space-x-6 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+                <a href="#about" class="hover:text-black transition">About</a>
+                <a href="#works" class="hover:text-black transition text-black border-b border-black pb-1">Works</a>
+                <a href="#contact" class="hover:text-black transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="pt-32 pb-16 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h1 class="text-6xl font-bold mb-8 tracking-tighter">About Me</h1>
+                <p class="text-gray-500 text-lg leading-relaxed mb-8">
+                    I am a Junior Graphic Designer specialized in creating clean visual assets. 
+                    I focus on balance, typography, and grayscale aesthetics to deliver clarity in every project.
+                </p>
+                <div class="space-y-4">
+                    <h3 class="text-xs uppercase font-bold tracking-widest text-gray-400">Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Adobe Photoshop</span>
+                        <span class="tag">Adobe Illustrator</span>
+                        <span class="tag">Adobe Premiere Pro</span>
+                        <span class="tag">Adobe Lightroom</span>
+                        <span class="tag">Adobe InDesign</span>
+                        <span class="tag">Microsoft Word</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-black"></div>
+                <div class="bg-gray-200 aspect-[4/5] rounded-sm flex items-center justify-center grayscale overflow-hidden">
+                    <img src="./1773325090100.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="py-20 px-6 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold uppercase tracking-tighter">Portfolio</h2>
+                    <p class="text-gray-400 text-sm italic">Categorized Design Works</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="workGrid">
+                <!-- Works injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 bg-white border-t border-gray-100 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-8 md:mb-0">
+                <h2 class="text-2xl font-bold tracking-tighter mb-2">Get in touch.</h2>
+            </div>
+            <div class="flex space-x-8 text-sm font-bold uppercase tracking-widest">
+                <a href="https://linkedin.com/in/kasun-harshana-premalal" class="hover:line-through">LinkedIn</a>
+                <a href="https://wa.me/+94755982430" class="hover:line-through">Whatsapp</a>
+                <a href="mailto:kasunh375@gmail.com" class="hover:line-through">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slideshow Modal -->
+    <div id="previewModal">
+        <button class="absolute top-8 right-8 text-black text-4xl hover:rotate-90 transition-transform z-50" onclick="closeModal()">&times;</button>
+        
+        <div class="flex items-center w-full max-w-7xl px-6 justify-between gap-4 md:gap-12">
+            <button class="nav-btn shrink-0" onclick="changeSlide(-1)">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            
+            <div class="flex-1 flex flex-col items-center justify-center overflow-hidden">
+                <div id="modalImageContainer" class="w-full max-h-[70vh] flex items-center justify-center mb-6">
+                    <!-- Image injects here -->
+                </div>
+                <div class="text-center">
+                    <h2 id="modalTitle" class="text-3xl md:text-4xl font-bold tracking-tighter mb-2 italic"></h2>
+                    <p id="modalSoftware" class="text-gray-400 uppercase tracking-[0.3em] text-[10px] font-bold"></p>
+                    <p id="modalCount" class="text-gray-300 mt-4 font-mono text-xs"></p>
+                </div>
+            </div>
+
+            <button class="nav-btn shrink-0" onclick="changeSlide(1)">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * INSTRUCTIONS: 
+         * Replace the 'src' value with your actual image paths.
+         * Example: src: "images/birthday-01.jpg"
+         */
+        const works = [
+            { cat: "Birthday Cards", title: "Birthday Card A", software: "Adobe Photoshop", src: "./Birthday-Card.jpg" },
+            { cat: "Birthday Cards", title: "Birthday Card B", software: "Adobe Photoshop", src: "./Birthday-Card-2.jpg" },
+            { cat: "Class Posters", title: "Class Poster 1", software: "Adobe Photoshop & Illustrator", src: "./YD-Poster.jpg" },
+            { cat: "Class Posters", title: "Class Poster 2", software: "Adobe Photoshop & Illustrator", src: "./Asanka-Sir-01.jpg" },
+            { cat: "Facebook Posters", title: "FB Campaign For PMV", software: "Adobe Photoshop & Illustrator", src: "./Scl-post-2-for-drama-01.jpg" },
+            { cat: "Facebook Posters", title: "FB Campaign For PMV", software: "Adobe Photoshop & Illustrator", src: "./Scl-post-2-for-drama-01.jpg" },
+            { cat: "Facebook Posters", title: "Independence Day Poster For PMV", software: "Adobe Photoshop & Illustrator", src: "./independence-day-01.jpg" },
+            { cat: "Facebook Posters", title: "FB Campaign For PMV", software: "Adobe Photoshop & Illustrator", src: "./Thanks-post-1.jpg" },
+            { cat: "Facebook Posters", title: "FB Campaign For PMV", software: "Adobe Photoshop & Illustrator", src: "./Scl-post.jpg" },
+            { cat: "ID Card Designs", title: "ID Card Design for Media Unit of PMV", software: "Adobe Illustrator", src: "./ID-card-01.jpg" },
+            { cat: "Logo Designs", title: "Logo Design for Media Unit of PMV", software: "Adobe Illustrator", src: "./Logo-en.png" },
+            { cat: "Logo Designs", title: "Logo Design for Century Celebration of PMV", software: "Adobe Illustrator", src: "./Anniversary-logo-01.png" },
+            { cat: "Logo Designs", title: "Logo Design for Century Celebration of PMV", software: "Adobe Illustrator", src: "./Anniversary-logo-w-01.png" },
+            { cat: "Logo Designs", title: "The Logo for HASH iNfinite Lk", software: "Adobe Illustrator", src: "./Hash-Logo.jpg" }
+        ];
+
+        let currentIndex = 0;
+        const grid = document.getElementById('workGrid');
+        const modal = document.getElementById('previewModal');
+        const mTitle = document.getElementById('modalTitle');
+        const mSoftware = document.getElementById('modalSoftware');
+        const mImgContainer = document.getElementById('modalImageContainer');
+        const mCount = document.getElementById('modalCount');
+
+        // Generate Grid Items
+        works.forEach((work, index) => {
+            const card = document.createElement('div');
+            card.className = 'work-card rounded-sm cursor-pointer';
+            card.onclick = () => openModal(index);
+            card.innerHTML = `
+                <div class="bg-gray-200 aspect-square overflow-hidden relative group">
+                    <img src="${work.src}" alt="${work.title}" class="w-full h-full object-cover hover:grayscale-0">
+                    <div class="overlay">
+                        <span class="text-white text-[10px] uppercase tracking-widest border border-white px-4 py-2">Expand Work</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-white">
+                    <span class="text-[9px] uppercase tracking-widest text-gray-400 block mb-1">${work.cat}</span>
+                    <h3 class="font-bold text-sm tracking-tight">${work.title}</h3>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        function openModal(index) {
+            currentIndex = index;
+            updateModalContent();
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateModalContent() {
+            const item = works[currentIndex];
+            mTitle.innerText = item.title;
+            mSoftware.innerText = item.software;
+            mImgContainer.innerHTML = `<img src="${item.src}" class="max-w-full max-h-[70vh] object-contain shadow-2xl rounded" alt="${item.title}">`;
+            mCount.innerText = `${currentIndex + 1} / ${works.length}`;
+        }
+
+        function changeSlide(dir) {
+            currentIndex += dir;
+            if (currentIndex < 0) currentIndex = works.length - 1;
+            if (currentIndex >= works.length) currentIndex = 0;
+            updateModalContent();
+        }
+
+        // Close on background click
+        modal.onclick = (e) => { if (e.target == modal) closeModal(); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'ArrowRight') changeSlide(1);
+                if (e.key === 'Escape') closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
